@@ -98,6 +98,7 @@ class GamePlay{
         }
         ballerNo=0;
         int Flag=1;
+        int Target=0;
 
         for(int ball=1;ball<=30;ball++)
         {   System.out.println("Enter what happened on the next ball");
@@ -317,7 +318,7 @@ class GamePlay{
                     if(Flag==1)
                     {
                         System.out.println("Enter the name of the new Batsmen");
-                        System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.Runs+"-"+t1.Twicket()+"]");
+                        System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.runs(0)+"-"+t1.Twicket()+"]");
                         System.out.println(player[batsmenNo1].batsmenName+" "+player[batsmenNo1].runs+"("+player[batsmenNo1].ballsfaced()+")");
                         System.out.println(player[batsmenNo2].batsmenName+" "+player[batsmenNo2].runs+"("+player[batsmenNo2].ballsfaced+")");
                         System.out.println(baller[ballerNo].ballerName+" "+baller[ballerNo].wicket()+"-"+baller[ballerNo].runsANDball(0)+" "+baller[ballerNo].Overs(baller[ballerNo].balls));
@@ -333,31 +334,30 @@ class GamePlay{
                         }
                         break;
                     }
-                    if(Flag==2)
-                    {
-                        System.out.println(t1.Name+" VS "+t2.Name);
-                        System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.Runs+"-"+t1.Twicket()+"]");
-                        System.out.println(player[batsmenNo1].batsmenName+" "+player[batsmenNo1].runs+"("+player[batsmenNo1].ballsfaced+")");
-                        System.out.println(player[batsmenNo2].batsmenName+" "+player[batsmenNo2].runs+"("+player[batsmenNo2].ballsfaced()+")");
-                        System.out.println(baller[ballerNo].ballerName+" "+baller[ballerNo].wicket()+"-"+baller[ballerNo].runsANDball(0)+" "+baller[ballerNo].Overs(baller[ballerNo].balls));
-                        System.out.println("Overs-"+t1.Tover(t1.balls));
+                    if(Flag==2) {
+                        System.out.println(t1.Name + " VS " + t2.Name);
+                        System.out.println(t1.Name + " VS " + t2.Name + " " + "[" + t1.runs(0) + "-" + t1.Twicket() + "]");
+                        System.out.println(player[batsmenNo1].batsmenName + " " + player[batsmenNo1].runs + "(" + player[batsmenNo1].ballsfaced + ")");
+                        System.out.println(player[batsmenNo2].batsmenName + " " + player[batsmenNo2].runs + "(" + player[batsmenNo2].ballsfaced() + ")");
+                        System.out.println(baller[ballerNo].ballerName + " " + baller[ballerNo].wicket() + "-" + baller[ballerNo].runsANDball(0) + " " + baller[ballerNo].Overs(baller[ballerNo].balls));
+                        System.out.println("Overs-" + t1.Tover(t1.balls));
                         System.out.println("Batsmen hit the ball for w");
-                        batsmenNo2=batsmenNo2+2;
-                        player[batsmenNo2]=new Batsmen();
+                        batsmenNo2 = batsmenNo2 + 2;
+                        player[batsmenNo2] = new Batsmen();
                         System.out.println("Enter the new batsmen ghhh name:");
-                        player[batsmenNo2].Name(player[batsmenNo2].batsmenName=scan.nextLine());
-                        if(ball%6==0)
-                        {
-                            Flag=1;
+                        player[batsmenNo2].Name(player[batsmenNo2].batsmenName = scan.nextLine());
+                        if (ball % 6 == 0) {
+                            Flag = 1;
                         }
                         break;
                     }
-
             }
             if(ball%6==0)
             {
                 if(ball==30)
                 {
+                    Target=t1.Runs;
+                    System.out.println("So the target is: "+Target);
                     break;
                 }
                 System.out.print("Available ballers\nPress:\n");
