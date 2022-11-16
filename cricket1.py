@@ -1,66 +1,82 @@
+#class batsemn to keep the track of the batsmen
 class Batsmen :
-    runs = 0
-    ballsfaced = 0
+    bruns = 0
+    ballsfacedb = 0
     batsmenName = None
-    def  runs(self, run) :
-        self.runs = self.runs + run
+    #defining functions
+    #runs of rhe batsmen
+    def  runs(self, bruns) :
+        self.bruns +=bruns
         return self.runs
-    def  Name(self, Name) :
-        self.batsmenName = Name
+        #name pf the batsmen
+    def  Name(self, batsmenName) :
+        self.batsmenName = batsmenName
         return self.batsmenName
+    #balls faced by the batsmen
     def  ballsfaced(self) :
-        self.ballsfaced = self.ballsfaced + 1
-        return self.ballsfaced
+        self.ballsfacedb += 1
+        return self.ballsfacedb
+        #class baller for keepmg track of the baller records
 class Baller :
     balls = 0
     overs = 0
     runs = 0
     wickets = 0
     ballerName = None
-    def  runsANDball(self, run) :
-        self.runs = self.runs + run
-        self.balls = self.balls + 1
+    #this function for runs and balls of the baller balled
+    def  runsANDball(self, runs) :
+        self.runs += runs
+        self.balls += 1
         return self.runs
+    #economy of the baller
     def  Economy(self, runs) :
         economy = runs / 6.0
         return economy
+    #wickets taken by trhe baller
     def  wicket(self) :
-        self.wickets = self.wickets + 1
+        self.wickets += 1
         return self.wickets
+    #overs balled by tyhe baller
     def  Overs(self, balls) :
         overs = int(balls / 6)
         ball = balls % 6
         Over = str(overs) + "." + str(ball)
         d = float(Over)
         return d
-    def  BallerName(self, name) :
-        self.ballerName = name
+    #baller name
+    def  BallerName(self, ballerName) :
+        self.ballerName = ballerName
         return self.ballerName
+#class team for keeping record of the team
 class Team :
     Name = None
     Runs = 0
     Twicket = 0
     balls = 0
     Target = 0
-    def  teamName(self, name) :
-        self.Name = name
+    #team names who is going to play
+    def  teamName(self, Name) :
+        self.Name = Name
         return self.Name
-    def  runs(self, runs) :
-        self.Runs = runs + self.Runs
-        self.balls = self.balls + 1
+    #runs scored by the batsmen
+    def  runs(self, Runs) :
+        self.Runs =Runs
+        self.balls += 1
         return self.Runs
-    def  Twicket(self) :
-        self.Twicket = self.Twicket + 1
+    #wickets lose ny the teams
+    def  Teamwicket(self) :
+        self.Twicket += 1
         return self.Twicket
+    #overs of the team currently
     def  Tover(self, balls) :
         overs = int(balls / 6)
         ball = balls % 6
         Over = str(overs) + "." + str(ball)
         d = float(Over)
         return d
+#game start from gameplay
 class GamePlay :
     def __init__(self) :
-        scan =  "Python-inputs"
         t1 = Team()
         t2 = Team()
         t1player = [None] * (22)
@@ -69,25 +85,27 @@ class GamePlay :
         t1BatsmenNo2 = 1
         t2ballerNo = 0
         t1player[t1BatsmenNo1] = Batsmen()
-        t1player[t1BatsmenNo2] = Batsmen()
+        t2baller[t2ballerNo]=Baller()
+
+        for i in range(1,22):
+            t1player[i]=Batsmen()
+        
+        t1BatsmenNo1 = 0
+        t1BatsmenNo2 = 1
+             
         print("Enter the team names")
-        t1.teamName()
-        t1.Name = input()
-        t2.teamName()
-        t2.Name = input()
+        t1.teamName(input())
+        t2.teamName(input())
         print("Enter the name of the Batsmen whose going to take the strike")
-        t1player[t1BatsmenNo1].Name()
-        t1player[t1BatsmenNo1].batsmenName = input()
+        t1player[t1BatsmenNo1].Name(input())
         print("Enter the name of the Batsmen who  is at non striker end")
-        t1player[t1BatsmenNo2].Name()
-        t1player[t1BatsmenNo2].batsmenName = input()
+        t1player[t1BatsmenNo2].Name(input())
         print("Enter the 6 baller name")
         t2ballerNo = 0
         while (t2ballerNo < 6) :
             t2baller[t2ballerNo] = Baller()
-            print("Enter baller no" + str((t2ballerNo + 1)))
-            t2baller[t2ballerNo].BallerName()
-            t2baller[t2ballerNo].ballerName = input()
+            print("Enter baller no " + str((t2ballerNo + 1)))
+            t2baller[t2ballerNo].BallerName(input())
             t2ballerNo += 1
         t2ballerNo = 0
         Flag = 1
@@ -97,16 +115,16 @@ class GamePlay :
             hit = input()
             if (hit=="0"):
                 if (Flag == 1) :
-                    print(t1.Name + " VS " + t2.Name + " " + "[" + str(t1.runs(int(hit))) + "-" + str(t1.Twicket) + "]")
-                    print(t1player[t1BatsmenNo1].batsmenName + "* " + str(t1player[t1BatsmenNo1].runs(int(hit))) + "(" + str(t1player[t1BatsmenNo1].ballsfaced()) + ")")
-                    print(t1player[t1BatsmenNo2].batsmenName + " " + str(t1player[t1BatsmenNo2].runs) + "(" + str(t1player[t1BatsmenNo2].ballsfaced) + ")")
-                    print(t2baller[t2ballerNo].ballerName + " " + str(t2baller[t2ballerNo].wickets) + "-" + str(t2baller[t2ballerNo].runsANDball(int(hit))) + " " + str(t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls)))
-                    print("Overs-" + str(t1.Tover(t1.balls)))
+                    print(t1.Name + " VS " + t2.Name + " " + "[" + str(t1.runs(int(hit))) + "-" + str((t1.Twicket)) + "]")
+                    print(t1player[t1BatsmenNo1].batsmenName + "* " + str(t1player[t1BatsmenNo1].runs(int(hit))) + "(" + str((t1player[t1BatsmenNo1].ballsfaced())) + ")")
+                    print(t1player[t1BatsmenNo2].batsmenName + " " + str((t1player[t1BatsmenNo2].runs)) + "(" + str((t1player[t1BatsmenNo2].ballsfaced)) + ")")
+                    print(t2baller[t2ballerNo].ballerName + " " + str((t2baller[t2ballerNo].wickets)) + "-" + str((t2baller[t2ballerNo].runsANDball(int(hit)))) + " " + str((t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls))))
+                    print("Overs-" + str(t1.Tover(ball)))
                     print("Ohhh its a dot ball")
                     if (ball % 6 == 0) :
                         Flag = 2
                 if (Flag == 2) :
-                    print(t1.Name + " VS " + t2.Name + " " + "[" + str(t1.runs(int(hit))) + "-" + str(t1.Twicket) + "]")
+                    print(t1.Name + " VS " + t2.Name + " " + "[" + str(t1.runs(int(hit))) + "-" + str((t1.Twicket)) + "]")
                     print(t1player[t1BatsmenNo1].batsmenName + " " + str(t1player[t1BatsmenNo1].runs) + "(" + str(t1player[t1BatsmenNo1].ballsfaced) + ")")
                     print(t1player[t1BatsmenNo2].batsmenName + "* " + str(t1player[t1BatsmenNo2].runs(int(hit))) + "(" + str(t1player[t1BatsmenNo2].ballsfaced()) + ")")
                     print(t2baller[t2ballerNo].ballerName + " " + str(t2baller[t2ballerNo].wickets) + "-" + str(t2baller[t2ballerNo].runsANDball(int(hit))) + " " + str(t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls)))
@@ -116,7 +134,7 @@ class GamePlay :
                         Flag = 1
             elif(hit=="1"):
                 if (Flag == 1) :
-                    print(t1.Name + " VS " + t2.Name + " " + "[" + str(t1.runs(int(hit))) + "-" + str(t1.Twicket) + "]")
+                    print(t1.Name + " VS " + t2.Name + " " + "[" + str(t1.runs(int(hit))) + "-" + str((t1.Twicket)) + "]")
                     print(t1player[t1BatsmenNo1].batsmenName + "* " + str(t1player[t1BatsmenNo1].runs(int(hit))) + "(" + str(t1player[t1BatsmenNo1].ballsfaced()) + ")")
                     print(t1player[t1BatsmenNo2].batsmenName + " " + str(t1player[t1BatsmenNo2].runs) + "(" + str(t1player[t1BatsmenNo2].ballsfaced) + ")")
                     print(t2baller[t2ballerNo].ballerName + " " + str(t2baller[t2ballerNo].wickets) + "-" + str(t2baller[t2ballerNo].runsANDball(int(hit))) + " " + str(t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls)))
@@ -268,7 +286,6 @@ class GamePlay :
                     print(str(balling + 1) + " " + t2baller[balling].ballerName)
                     balling += 1
                 t2ballerNo = input()
-                input()
                 t2ballerNo = t2ballerNo - 1
             ball += 1
         print("II innings start")
@@ -478,10 +495,10 @@ class GamePlay :
                 t1ballerNo = t1ballerNo - 1
             ball += 1
 class Main :
-    @staticmethod
-    def main( args) :
+    def __init__(self) :
         g1 = GamePlay()
-    
 
-if __name__=="__main__":
-    Main.main([])
+start="Start"
+
+if(start):
+    GameStart=Main()

@@ -1,36 +1,45 @@
 import java.util.*;
+//class batsmen which is going to track the record of the batsman
 class Batsmen{
     int runs,ballsfaced;
     String batsmenName;
+    //runs is used to keep the track of the runs scored by the batsmen
     public int runs(int run){
         this.runs=runs+run;
         return runs;
     }
+    //Name of the batsmen is stored
     public String Name(String Name){
         this.batsmenName=Name;
         return batsmenName;
     }
+    //balls face d by batsmen
     public int ballsfaced(){
         ballsfaced=ballsfaced+1;
         return ballsfaced;
     }
 }
+//baller class used to track the record of the baller
 class Baller{
     int balls,overs,runs,wickets;
     String ballerName;
+    //runsANDball baller give
     public int runsANDball(int run){
         this.runs=runs+run;
         balls=balls+1;
         return runs;
     }
+    //economyu of the batsmen
     public double Economy(int runs){
         double economy=runs/6.0;
         return economy;
     }
+    //wicket taken by the baller
     public int wicket(){
         wickets= wickets+1;
         return wickets;
     }
+    //overs balled by the baller
     public double Overs(int balls)
     {
         int overs=balls/6;
@@ -39,28 +48,34 @@ class Baller{
         double d=Double.parseDouble(Over);
         return d;
     }
+    //BallerName of the baller
     public String BallerName(String name){
         this.ballerName=name;
         return ballerName;
     }
 }
+//team class for teh record of the team
 class Team{
     String Name;
     int Runs,Twicket,balls,Target;
+    //team names
     public String teamName(String name){
         this.Name=name;
         return Name;
     }
+    //runs scored by the team
     public int runs(int runs){
         this.Runs=runs+Runs;
         balls=balls+1;
         return Runs;
     }
+    //wicket lose by the team
     public int Twicket()
     {
         Twicket=Twicket+1;
         return Twicket;
     }
+    //overs of the team
     public double Tover(int balls)
     {
         int overs=balls/6;
@@ -70,6 +85,7 @@ class Team{
         return d;
     }
 }
+//here the score board start by the constructor
 class GamePlay{
     GamePlay(){
         Scanner scan = new Scanner(System.in);
@@ -97,7 +113,7 @@ class GamePlay{
         }
         t2ballerNo=0;
         int Flag=1;
-        
+        //here the first balling start run 1,2,3,4,6,W
         for(int ball=1;ball<=30;ball++)
         {   System.out.println("Enter what happened on the next ball");
             String hit =scan.nextLine();
@@ -370,6 +386,7 @@ class GamePlay{
                 t2ballerNo=t2ballerNo-1;
             }
         }
+        //second inning start Runs 1,2,3,4,6,W
         System.out.println("II innings start");
         Batsmen t2player[] = new Batsmen[22];
         Baller t1baller[] = new Baller[11];
@@ -671,11 +688,10 @@ class GamePlay{
     }
 
 }
-
 public class Main
 {
     public static void main(String[] args) {
-
+        //gameplay starts
         GamePlay g1 = new GamePlay();
     }
 }
