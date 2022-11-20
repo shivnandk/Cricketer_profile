@@ -1,692 +1,253 @@
 import java.util.*;
-//class batsmen which is going to track the record of the batsman
-class Batsmen{
-    int runs,ballsfaced;
-    String batsmenName;
-    //runs is used to keep the track of the runs scored by the batsmen
-    public int runs(int run){
-        this.runs=runs+run;
-        return runs;
-    }
-    //Name of the batsmen is stored
-    public String Name(String Name){
-        this.batsmenName=Name;
-        return batsmenName;
-    }
-    //balls face d by batsmen
-    public int ballsfaced(){
-        ballsfaced=ballsfaced+1;
-        return ballsfaced;
-    }
-}
-//baller class used to track the record of the baller
-class Baller{
-    int balls,overs,runs,wickets;
-    String ballerName;
-    //runsANDball baller give
-    public int runsANDball(int run){
-        this.runs=runs+run;
-        balls=balls+1;
-        return runs;
-    }
-    //economyu of the batsmen
-    public double Economy(int runs){
-        double economy=runs/6.0;
-        return economy;
-    }
-    //wicket taken by the baller
-    public int wicket(){
-        wickets= wickets+1;
-        return wickets;
-    }
-    //overs balled by the baller
-    public double Overs(int balls)
+ class Baller{
+    public String ba_name;
+    public int ba_runs,ba_age,ba_innings,ba_wicket,ba_balls;
+    public double ba_economy,ba_wicket_average,ba_overs;
+    //this function takes the name of the baller
+    public String ball_name(String name_ip)
     {
-        int overs=balls/6;
-        int ball=balls%6;
-        String Over=overs+"."+ball;
-        double d=Double.parseDouble(Over);
-        return d;
+        ba_name=name_ip;
+        return ba_name;
     }
-    //BallerName of the baller
-    public String BallerName(String name){
-        this.ballerName=name;
-        return ballerName;
-    }
-}
-//team class for teh record of the team
-class Team{
-    String Name;
-    int Runs,Twicket,balls,Target;
-    //team names
-    public String teamName(String name){
-        this.Name=name;
-        return Name;
-    }
-    //runs scored by the team
-    public int runs(int runs){
-        this.Runs=runs+Runs;
-        balls=balls+1;
-        return Runs;
-    }
-    //wicket lose by the team
-    public int Twicket()
+    //This function takes the number of balls baller balled
+    public int baller_balls(int ball_ip)
     {
-        Twicket=Twicket+1;
-        return Twicket;
+        ba_balls=ball_ip;
+        return ba_balls;
     }
-    //overs of the team
-    public double Tover(int balls)
+    //This function counts th number of the over baller balled
+    public double ball_over(int ball_ip)
     {
-        int overs=balls/6;
-        int ball=balls%6;
-        String Over=overs+"."+ball;
-        double d=Double.parseDouble(Over);
-        return d;
+        ba_overs=ball_ip/6.0;
+        return ba_overs;
+    }
+    //This function calculate the economy of the baller
+    public double economy(int runs_ip){
+        ba_economy=(runs_ip/ba_balls)*6;
+        return ba_economy;
+    }
+    //this function track the number of the innings of the baller
+    public int ball_innings(int innings_ip){
+        ba_innings=innings_ip;
+        return ba_innings;
+    }
+    //this function store the age of th e baller
+    public int ball_age(int age_ip){
+        ba_age=age_ip;
+        return ba_age;
+    }
+    //this function store the wickets taken by tyhe baller
+    public int ball_wicket(int wic_ip){
+        ba_wicket=wic_ip;
+        return ba_wicket;
+    }
+    //this function calculate the averge runs per wicket
+    public double ball_wicket_average(int wic_ip,int ip_runs){
+        ba_wicket_average=ip_runs/wic_ip;
+        return ba_wicket_average;
+    }
+    //this function tracks the nuber of runs given by the baller
+    public int ball_run(int runs_ip){
+        ba_runs=runs_ip;
+        return ba_runs;
     }
 }
-//here the score board start by the constructor
-class GamePlay{
-    GamePlay(){
-        Scanner scan = new ScannSystem.in);
-        Team t1 = new Team();
-        Team t2 = new Team();
-        Batsmen t1player[] = new Batsmen[22];
-        Baller t2baller[] = new Baller[11];
-        int t1BatsmenNo1=0;
-        int t1BatsmenNo2=1;
-        int t2ballerNo=0;
-        t1player[t1BatsmenNo1]=new Batsmen();
-        t1player[t1BatsmenNo2]=new Batsmen();System.out.println("Enter the team names");
-        t1.teamName(t1.Name=scan.nextLine());
-        t2.teamName(t2.Name=scan.nextLine());System.out.println("Enter the name of the Batsmen whose going to take the strike");
-        t1player[t1BatsmenNo1].Name(t1player[t1BatsmenNo1].batsmenName=scan.nextLine());System.out.println("Enter the name of the Batsmen who  is at non striker end");
-        t1player[t1BatsmenNo2].Name(t1player[t1BatsmenNo2].batsmenName=scan.nextLine());System.out.println("Enter the 6 baller name");
-        for(t2ballerNo=0;t2ballerNo<6;t2ballerNo++){
-            t2baller[t2ballerNo]= new Baller();
-System.out.println("Enter baller no"+(t2ballerNo+1));
-            t2baller[t2ballerNo].BallerName(t2baller[t2ballerNo].ballerName=scan.nextLine());
+//class batsmen tracks the record of the baller
+class Batsmen extends Baller{
+    public String bt_name;
+    public double bt_strike_rate,bt_average;
+    public int bt_runs,bt_age,bt_innings,bt_balls_faced;
+    //this function stores the name of the baller
+    public String bat_name(String name_ip){
+        bt_name =name_ip;
+        return bt_name;
+    }
+    //this function calculate the strike rate of the batsmen
+    public double bat_strike_rate(int ball_faced_ip,int runs_ip){
+         bt_strike_rate=((runs_ip/ball_faced_ip)*100.0);
+         return bt_strike_rate;
+    }
+    //this function calculate the average of the batsmen
+    public double bat_average(int innings_ip,int runs_ip){
+        bt_average=runs_ip/innings_ip;
+        return bt_average;
+    }
+    //this function store the runs of the batsmen
+    public int bat_runs(int runs_ip){
+        bt_runs=runs_ip;
+        return bt_runs;
+    }
+    //this function stores the age of the batsmen
+    public int bat_age(int age_ip){
+        bt_age=age_ip;
+        return bt_age;
+    }
+    //this function stores the number of innings batsmen played
+    public int bat_innings(int innings_ip){
+        bt_innings=innings_ip;
+        return bt_innings;
+    }
+    //this function stores the balls faced by the batsmen
+    public int bat_balls_faced(int ball_faced_ip){
+        bt_balls_faced=ball_faced_ip;
+        return bt_balls_faced;
+    }
+}
+//class team keeps the tracks of the team records
+class Team extends Batsmen{
+    public String team_name;
+    //this function stores the name of the teamof the player
+    public String team_names(String team_name_ip){
+        team_name=team_name_ip;
+        return team_name;
+    }
+}
+class Profile{
+    Team player[]= new Team[100];
+    String name;
+    int inputs;
+    String type;
+    Scanner sc = new Scanner(System.in);
+    void profile(int Player_no){
+    player[Player_no]=new Team();
+    System.out.println("Enter the type of the player\n1.batsmen\n2.baller\n3.All-rounder");
+    type=sc.nextLine();
+    System.out.println(type);
+    {
+    if(type=="batsmen")
+        {
+        System.out.println("Enter the name of the batsmen");
+        name=sc.nextLine();
+        player[Player_no].bat_name(name);
+        System.out.println("Enter team Name");
+        name=sc.nextLine();
+        player[Player_no].team_names(name);
+        System.out.println("Enter runs scored by the batsmen");
+        inputs=sc.nextInt();
+        player[Player_no].bat_runs(inputs);
+        System.out.println("Enter the age of the batsmen");
+        inputs=sc.nextInt();
+        player[Player_no].bat_age(inputs);
+        System.out.println("Enter the innings played by the batsmen");
+        inputs=sc.nextInt();
+        player[Player_no].bat_innings(inputs); 
+        System.out.println("Enter the number of balls faced by the batsmen");
+        inputs=sc.nextInt();
+        player[Player_no].bat_balls_faced(inputs);
         }
-        t2ballerNo=0;
-        int Flag=1;
-        //here the first balling start run 1,2,3,4,6,W
-        for(int ball=1;ball<=30;ball++)
-        {System.out.println("Enter what happened on the next ball");
-            String hit =scan.nextLine();
-            switch(hit)
-            {   case "0":if(Flag==1)
-            {
-    System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.runs(Integer.parseInt(hit))+"-"+t1.Twicket+"]");
-    System.out.println(t1player[t1BatsmenNo1].batsmenName+"* "+t1player[t1BatsmenNo1].runs(Integer.parseInt(hit))+"("+t1player[t1BatsmenNo1].ballsfaced()+")");
-    System.out.println(t1player[t1BatsmenNo2].batsmenName+" "+t1player[t1BatsmenNo2].runs+"("+t1player[t1BatsmenNo2].ballsfaced+")");
-    System.out.print(t2baller[t2ballerNo].ballerName+" "+t2baller[t2ballerNo].wickets+"-"+t2baller[t2ballerNo].runsANDball(Integer.parseInt(hit)))
-    System.out.println(" "+t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls))
-    System.out.println("Overs-"+t1.Tover(t1.balls));
-    System.out.println("Ohhh its a dot ball");
-                if(ball%6==0)
-                {
-                    Flag=2;
-                }
-                break;
-            }
-                if(Flag==2)
-                {
-  System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.runs(Integer.parseInt(hit))+"-"+t1.Twicket+"]");
-  System.out.println(t1player[t1BatsmenNo1].batsmenName+" "+t1player[t1BatsmenNo1].runs+"("+t1player[t1BatsmenNo1].ballsfaced+")");
-  System.out.print(t1player[t1BatsmenNo2].batsmenName+"* "+t1player[t1BatsmenNo2].runs(Integer.parseInt(hit))+"("+t1player[t1BatsmenNo2].ballsfaced()+")");
-  System.out.println(t2baller[t2ballerNo].ballerName+" "+t2baller[t2ballerNo].wickets+"-"+t2baller[t2ballerNo].runsANDball(Integer.parseInt(hit)));
-  System.out.println(" "+t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls));
-  System.out.println("Overs-"+t1.Tover(t1.balls));
-  System.out.println("Ohhh its a dot ball");
-                    if(ball%6==0)
-                    {
-                        Flag=1;
-                    }
-                    break;
-                }
-                case "1":
-                    if(Flag==1)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.runs(Integer.parseInt(hit))+"-"+t1.Twicket+"]");
-            System.out.print(t1player[t1BatsmenNo1].batsmenName+"* "+t1player[t1BatsmenNo1].runs(Integer.parseInt(hit)));
-            System.out.println("("+t1player[t1BatsmenNo1].ballsfaced()+")");
-            System.out.println(t1player[t1BatsmenNo2].batsmenName+" "+t1player[t1BatsmenNo2].runs+"("+t1player[t1BatsmenNo2].ballsfaced+")");
-            System.out.println(t2baller[t2ballerNo].ballerName+" "+t2baller[t2ballerNo].wickets+"-");
-            System.out.println(t2baller[t2ballerNo].runsANDball(Integer.parseInt(hit))+" "+t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls));
-            System.out.println("Overs-"+t1.Tover(t1.balls));
-            System.out.println("Batsmen hit the ball for a single");
-
-                        if(Integer.parseInt(hit)%2!=0)
-                        {
-                            Flag=2;
-                        }
-                        
-                        break;
-                    }
-                    if(Flag==2)
-                    {
-                        
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.runs(Integer.parseInt(hit))+"-"+t1.Twicket+"]");
-            System.out.println(t1player[t1BatsmenNo1].batsmenName+" "+t1player[t1BatsmenNo1].runs+"("+t1player[t1BatsmenNo1].ballsfaced+")");
-            System.out.println(t1player[t1BatsmenNo2].batsmenName+"* "+t1player[t1BatsmenNo2].runs(Integer.parseInt(hit))+"("+t1player[t1BatsmenNo2].ballsfaced()+")");
-            System.out.print(t2baller[t2ballerNo].ballerName+" "+t2baller[t2ballerNo].wickets+"-");
-            System.out.println(t2baller[t2ballerNo].runsANDball(Integer.parseInt(hit))+" "+t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls));
-            System.out.println("Overs-"+t1.Tover(t1.balls));
-            System.out.println("Batsmen hit the ball for a single");
-                        if(Integer.parseInt(hit)%2!=0)
-                        {
-                            Flag=1;
-                        }
-                        if(ball%6==0)
-                        {
-                            if(Flag==1){
-                                Flag=2;
-                            }
-                            else
-                            {
-                                Flag=1;
-                            }
-
-                            
-                        }
-                    }
-                    break;
-                case "2":
-                    if(Flag==1)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.runs(Integer.parseInt(hit))+"-"+t1.Twicket+"]");
-            System.out.println(t1player[t1BatsmenNo1].batsmenName+"* "+t1player[t1BatsmenNo1].runs(Integer.parseInt(hit)));
-            System.out.println(t1player[t1BatsmenNo2].batsmenName+" "+t1player[t1BatsmenNo2].runs+"("+t1player[t1BatsmenNo2].ballsfaced+")");
-            System.out.println(t2baller[t2ballerNo].ballerName+" "+t2baller[t2ballerNo].wickets+"-"+t2baller[t2ballerNo].runsANDball(Integer.parseInt(hit))+" "+t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls));
-            System.out.println("Overs-"+t1.Tover(t1.balls));
-            System.out.println("Batsmen hit the ball for 2 through covers");
-                        if(ball%6==0)
-                        {
-                            Flag=2;
-                        }
-                        break;
-                    }
-                    if(Flag==2)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.runs(Integer.parseInt(hit))+"-"+t1.Twicket+"]");
-            System.out.println(t1player[t1BatsmenNo1].batsmenName+" "+t1player[t1BatsmenNo1].runs+"("+t1player[t1BatsmenNo1].ballsfaced+")");
-            System.out.println(t1player[t1BatsmenNo2].batsmenName+"* "+t1player[t1BatsmenNo2].runs(Integer.parseInt(hit))+"("+t1player[t1BatsmenNo2].ballsfaced()+")");
-            System.out.println(t2baller[t2ballerNo].ballerName+" "+t2baller[t2ballerNo].wickets+"-"+t2baller[t2ballerNo].runsANDball(Integer.parseInt(hit))+" "+t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls));
-            System.out.println("Overs-"+t1.Tover(t1.balls));
-            System.out.println("Nicely driven for 2");
-                        if(ball%6==0)
-                        {
-                            Flag=1;
-                        }
-                        break;
-                    }
-                case "3":
-                    if(Flag==1)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.runs(Integer.parseInt(hit))+"-"+t1.Twicket+"]");
-            System.out.println(t1player[t1BatsmenNo1].batsmenName+"* "+t1player[t1BatsmenNo1].runs(Integer.parseInt(hit))+"("+t1player[t1BatsmenNo1].ballsfaced()+")");
-            System.out.println(t1player[t1BatsmenNo2].batsmenName+" "+t1player[t1BatsmenNo2].runs+"("+t1player[t1BatsmenNo2].ballsfaced+")");
-            System.out.println(t2baller[t2ballerNo].ballerName+" "+t2baller[t2ballerNo].wickets+"-"+t2baller[t2ballerNo].runsANDball(Integer.parseInt(hit))+" "+t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls));
-            System.out.println("Overs-"+t1.Tover(t1.balls));
-            System.out.println(" A beauiful on drive for 3 runs");
-
-                        if(Integer.parseInt(hit)%2!=0)
-                        {
-                            Flag=2;
-                        }
-                        
-                        break;
-                    }
-                    if(Flag==2)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.runs(Integer.parseInt(hit))+"-"+t1.Twicket+"]");
-            System.out.println(t1player[t1BatsmenNo1].batsmenName+" "+t1player[t1BatsmenNo1].runs+"("+t1player[t1BatsmenNo1].ballsfaced+")");
-            System.out.println(t1player[t1BatsmenNo2].batsmenName+"* "+t1player[t1BatsmenNo2].runs(Integer.parseInt(hit))+"("+t1player[t1BatsmenNo2].ballsfaced()+")");
-            System.out.println(t2baller[t2ballerNo].ballerName+" "+t2baller[t2ballerNo].wickets+"-"+t2baller[t2ballerNo].runsANDball(Integer.parseInt(hit))+" "+t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls));
-            System.out.println("Overs-"+t1.Tover(t1.balls));
-            System.out.println("Its a scoop shot over wicket keepers head for 3 runs");
-                        if(Integer.parseInt(hit)%2!=0)
-                        {
-                            Flag=1;
-                        }
-                        if(ball%6==0)
-                        {
-                            if(Flag==1){
-                                Flag=2;
-                            }
-                            else
-                            {
-                                Flag=1;
-                            }
-                            
-                        }
-                    }
-                    
-                    break;
-                case "4":
-                    if(Flag==1)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.runs(Integer.parseInt(hit))+"-"+t1.Twicket+"]");
-            System.out.println(t1player[t1BatsmenNo1].batsmenName+"* "+t1player[t1BatsmenNo1].runs(Integer.parseInt(hit))+"("+t1player[t1BatsmenNo1].ballsfaced()+")");
-            System.out.println(t1player[t1BatsmenNo2].batsmenName+" "+t1player[t1BatsmenNo2].runs+"("+t1player[t1BatsmenNo2].ballsfaced+")");
-            System.out.println(t2baller[t2ballerNo].ballerName+" "+t2baller[t2ballerNo].wickets+"-"+t2baller[t2ballerNo].runsANDball(Integer.parseInt(hit))+" "+t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls));
-            System.out.println("Overs-"+t1.Tover(t1.balls));
-            System.out.println("A beautiful covers drive for 4 runs");
-                        if(ball%6==0)
-                        {
-                            Flag=2;
-                        }
-                        break;
-                    }
-                    if(Flag==2)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.runs(Integer.parseInt(hit))+"-"+t1.Twicket+"]");
-            System.out.println(t1player[t1BatsmenNo1].batsmenName+" "+t1player[t1BatsmenNo1].runs+"("+t1player[t1BatsmenNo1].ballsfaced+")");
-            System.out.println(t1player[t1BatsmenNo2].batsmenName+"* "+t1player[t1BatsmenNo2].runs(Integer.parseInt(hit))+"("+t1player[t1BatsmenNo2].ballsfaced()+")");
-            System.out.println(t2baller[t2ballerNo].ballerName+" "+t2baller[t2ballerNo].wickets+"-"+t2baller[t2ballerNo].runsANDball(Integer.parseInt(hit))+" "+t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls));
-            System.out.println("Overs-"+t1.Tover(t1.balls));
-            System.out.println("It's a straight drive for 4 runs");
-                        if(ball%6==0)
-                        {
-                            Flag=1;
-                        }
-                        break;
-                    }
-
-                case "6":if(Flag==1)
-                {
-        System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.runs(Integer.parseInt(hit))+"-"+t1.Twicket+"]");
-        System.out.println(t1player[t1BatsmenNo1].batsmenName+"* "+t1player[t1BatsmenNo1].runs(Integer.parseInt(hit))+"("+t1player[t1BatsmenNo1].ballsfaced()+")");
-        System.out.println(t1player[t1BatsmenNo2].batsmenName+" "+t1player[t1BatsmenNo2].runs+"("+t1player[t1BatsmenNo2].ballsfaced+")");
-        System.out.println(t2baller[t2ballerNo].ballerName+" "+t2baller[t2ballerNo].wickets+"-"+t2baller[t2ballerNo].runsANDball(Integer.parseInt(hit))+" "+t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls));
-        System.out.println("Overs-"+t1.Tover(t1.balls));
-        System.out.println("Nicely pulled away for 6 runs over fielders head");
-                    if(ball%6==0)
-                    {
-                        Flag=2;
-                    }
-                    break;
-                }
-                    if(Flag==2)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.runs(Integer.parseInt(hit))+"-"+t1.Twicket+"]");
-            System.out.println(t1player[t1BatsmenNo1].batsmenName+" "+t1player[t1BatsmenNo1].runs+"("+t1player[t1BatsmenNo1].ballsfaced+")");
-            System.out.println(t1player[t1BatsmenNo2].batsmenName+"* "+t1player[t1BatsmenNo2].runs(Integer.parseInt(hit))+"("+t1player[t1BatsmenNo2].ballsfaced()+")");
-            System.out.println(t2baller[t2ballerNo].ballerName+" "+t2baller[t2ballerNo].wickets+"-"+t2baller[t2ballerNo].runsANDball(Integer.parseInt(hit))+" "+t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls));
-            System.out.println("Overs-"+t1.Tover(t1.balls));
-            System.out.println("OHHHHHH its a cover drive for 6!");
-                        if(ball%6==0)
-                        {
-                            Flag=1;
-                        }
-                        break;
-                    }
-                case "W":
-                    if(Flag==1)
-                    {
-            System.out.println("Enter the name of the new Batsmen");
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t1.runs(0)+"-"+t1.Twicket()+"]");
-            System.out.println(t1player[t1BatsmenNo1].batsmenName+"W "+t1player[t1BatsmenNo1].runs+"("+t1player[t1BatsmenNo1].ballsfaced()+")");
-            System.out.println(t1player[t1BatsmenNo2].batsmenName+" "+t1player[t1BatsmenNo2].runs+"("+t1player[t1BatsmenNo2].ballsfaced+")");
-            System.out.println(t2baller[t2ballerNo].ballerName+" "+t2baller[t2ballerNo].wicket()+"-"+t2baller[t2ballerNo].runsANDball(0)+" "+t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls));
-            System.out.println("Overs-"+t1.Tover(t1.balls));
-            System.out.println("Beautiful in swinger for a W!");
-                        t1BatsmenNo1=t1BatsmenNo1+2;
-                        t1player[t1BatsmenNo1]= new Batsmen();
-            System.out.println("Enter the new batsmen name:");
-                        t1player[t1BatsmenNo1].Name(t1player[t1BatsmenNo1].batsmenName=scan.nextLine());
-                        if(ball%6==0)
-                        {
-                            Flag=2;
-                        }
-                        break;
-                    }
-                    if(Flag==2) {
-            System.out.println(t1.Name + " VS " + t2.Name);
-            System.out.println(t1.Name + " VS " + t2.Name + " " + "[" + t1.runs(0) + "-" + t1.Twicket() + "]");
-            System.out.println(t1player[t1BatsmenNo1].batsmenName + " " + t1player[t1BatsmenNo1].runs + "(" + t1player[t1BatsmenNo1].ballsfaced + ")");
-            System.out.println(t1player[t1BatsmenNo2].batsmenName + "W " + t1player[t1BatsmenNo2].runs + "(" + t1player[t1BatsmenNo2].ballsfaced() + ")");
-            System.out.println(t2baller[t2ballerNo].ballerName + " " + t2baller[t2ballerNo].wicket() + "-" + t2baller[t2ballerNo].runsANDball(0) + " " + t2baller[t2ballerNo].Overs(t2baller[t2ballerNo].balls));
-            System.out.println("Overs-" + t1.Tover(t1.balls));
-            System.out.println("Its a toe Crusher yorker");
-                        t1BatsmenNo2 = t1BatsmenNo2 + 2;
-                        t1player[t1BatsmenNo2] = new Batsmen();
-            System.out.println("Enter the new batsmen ghhh name:");
-                        t1player[t1BatsmenNo2].Name(t1player[t1BatsmenNo2].batsmenName = scan.nextLine());
-                        if (ball % 6 == 0) {
-                            Flag = 1;
-                        }
-                        break;
-                    }
-                default: {
-        System.out.println("invalid input");
-                    ball--;
-                }
-            }
-            if(t1.Twicket==10)
-            {
-                t2.Target=t1.Runs+1;
-    System.out.println("So the target is: "+t2.Target);
-                break;
-            }
-            if(ball%6==0)
-            {
-                if(ball==30)
-                {
-                    t2.Target=t1.Runs+1;
-        System.out.println("So the target is: "+t2.Target);
-                    break;
-                }
-    System.out.print("Available ballers\nPress:\n");
-                for(int balling=0;balling<6;balling++)
-                {
-        System.out.println(balling+1+" "+t2baller[balling].ballerName);
-                }
-                t2ballerNo=scan.nextInt();
-                scan.nextLine();
-                t2ballerNo=t2ballerNo-1;
-            }
+    else if(type=="baller")
+        {
+        System.out.println("Enter the name of the baller");
+        name=sc.nextLine();
+        player[Player_no].ball_name(name); 
+        System.out.println("Enter team Name");
+        name=sc.nextLine();
+        player[Player_no].team_names(name);
+        System.out.println("Enter the innings played by the baller"); 
+        inputs=sc.nextInt();
+        player[Player_no].ball_innings(inputs);
+        System.out.println("Enter the age of the baller");
+        inputs=sc.nextInt();
+        player[Player_no].ball_age(inputs);
+        System.out.println("Enter the number of  wickets taken by the baller");
+        inputs=sc.nextInt();
+        player[Player_no].ball_wicket(inputs);
+        System.out.println("Enter number of runs given by the baller" );
+        inputs=sc.nextInt();
+        player[Player_no].ball_run(inputs);
+        System.out.println("Enter the number of balls balled by the baller");
+        inputs=sc.nextInt();
+        player[Player_no].baller_balls(inputs);
         }
-        //second inning start Runs 1,2,3,4,6,WSystem.out.println("II innings start");
-        Batsmen t2player[] = new Batsmen[22];
-        Baller t1baller[] = new Baller[11];
-        int t2BatsmenNo1=0;
-        int t2BatsmenNo2=1;
-        int t1ballerNo=0;
-        t2player[t2BatsmenNo1]=new Batsmen();
-        t2player[t2BatsmenNo2]=new Batsmen();System.out.println(t1.Name+" VS "+t2.Name);System.out.println("Enter the name of the Batsmen whose going to take the strike");
-        t2player[t2BatsmenNo1].Name(t2player[t2BatsmenNo1].batsmenName=scan.nextLine());System.out.println("Enter the name of the Batsmen who  is at non striker end");
-        t2player[t2BatsmenNo2].Name(t2player[t2BatsmenNo2].batsmenName=scan.nextLine());System.out.println("Enter the 6 baller name");
-        for(t1ballerNo=0;t1ballerNo<6;t1ballerNo++){
-            t1baller[t1ballerNo]= new Baller();
-System.out.println("Enter baller no"+(t1ballerNo+1));
-            t1baller[t1ballerNo].BallerName(t1baller[t1ballerNo].ballerName=scan.nextLine());
+    else if(type=="All-rounder")
+    {
+    System.out.println("Enter the name of the All-rounder");
+    name=sc.nextLine();
+    player[Player_no].bat_name(name); 
+    System.out.println("Enter team Name of the All-rounder");
+    name=sc.nextLine();
+    player[Player_no].team_names(name);
+    System.out.println("Enter runs scored by the All-rounder");
+    inputs=sc.nextInt();
+    player[Player_no].bat_runs(inputs);
+    System.out.println("Enter the age of the batsmen");
+    inputs=sc.nextInt();
+        player[Player_no].bat_age(inputs);
+    System.out.println("Enter the innings played by the All-rounder as batsmen");
+    inputs=sc.nextInt();
+    player[Player_no].bat_innings(inputs);
+     System.out.println("Enter the number of balls faced by the All-rounder");
+    inputs=sc.nextInt();
+    player[Player_no].bat_balls_faced(inputs);
+    System.out.println("Enter the innings played by the All-rounder as baller");
+    inputs=sc.nextInt();
+    player[Player_no].ball_innings(inputs);
+    System.out.println("Enter the number of  wickets taken by the All-rounder");
+    inputs=sc.nextInt();
+    player[Player_no].ball_wicket(inputs);
+    System.out.println("Enter number of runs given by the All-rounder");
+    inputs=sc.nextInt();
+    player[Player_no].ball_run(inputs);
+    System.out.println("Enter the number of balls balled by the All-rounder");
+    inputs=sc.nextInt();
+    player[Player_no].baller_balls(inputs);
+    }
+    }
+        
+    }
+    void profile_disp(int Player_no){
+        if(type=="baller"){
+        System.out.println("Baller Name : "+player[Player_no].ba_name);
+        System.out.println("Team : "+player[Player_no].team_name);
+        System.out.println("Innings : "+player[Player_no].ba_innings);
+        System.out.println("Age : "+player[Player_no].ba_age);
+        System.out.println("Wickets : "+player[Player_no].ba_wicket);
+        player[Player_no].ball_wicket_average(player[Player_no].ba_wicket,player[Player_no].ba_runs);
+        System.out.println("Wicket Average : "+player[Player_no].ba_wicket_average);
+        player[Player_no].economy(player[Player_no].ba_runs);
+        System.out.println("Economy : "+player[Player_no].ba_economy);
         }
-        t1ballerNo=0;
-        Flag=1;
-
-        for(int ball=1;ball<=30;ball++)
-        {System.out.println("Enter what happened on the next ball");
-            String hit =scan.nextLine();
-System.out.println("Target-"+t2.Target);
-            switch(hit)
-            {   case "0":if(Flag==1)
-            {
-    System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t2.runs(Integer.parseInt(hit))+"-"+t2.Twicket+"]");
-    System.out.println(t2player[t2BatsmenNo1].batsmenName+"* "+t2player[t2BatsmenNo1].runs(Integer.parseInt(hit))+"("+t2player[t2BatsmenNo1].ballsfaced()+")");
-    System.out.println(t2player[t2BatsmenNo2].batsmenName+" "+t2player[t2BatsmenNo2].runs+"("+t2player[t2BatsmenNo2].ballsfaced+")");
-    System.out.println(t1baller[t1ballerNo].ballerName+" "+t1baller[t1ballerNo].wickets+"-"+t1baller[t1ballerNo].runsANDball(Integer.parseInt(hit))+" "+t1baller[t1ballerNo].Overs(t1baller[t1ballerNo].balls));
-    System.out.println("Overs-"+t2.Tover(t2.balls));
-    System.out.println("Ohhh its a dot ball");
-                if(ball%6==0)
-                {
-                    Flag=2;
-                }
-                break;
-            }
-                if(Flag==2)
-                {
-        System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t2.runs(Integer.parseInt(hit))+"-"+t2.Twicket+"]");
-        System.out.println(t2player[t2BatsmenNo1].batsmenName+" "+t2player[t2BatsmenNo1].runs+"("+t2player[t2BatsmenNo1].ballsfaced+")");
-        System.out.println(t2player[t2BatsmenNo2].batsmenName+"* "+t2player[t2BatsmenNo2].runs(Integer.parseInt(hit))+"("+t2player[t2BatsmenNo2].ballsfaced()+")");
-        System.out.println(t1baller[t1ballerNo].ballerName+" "+t1baller[t1ballerNo].wickets+"-"+t1baller[t1ballerNo].runsANDball(Integer.parseInt(hit))+" "+t1baller[t1ballerNo].Overs(t1baller[t1ballerNo].balls));
-        System.out.println("Overs-"+t2.Tover(t2.balls));
-        System.out.println("Ohhh its a dot ball");
-                    if(ball%6==0)
-                    {
-                        Flag=1;
-                    }
-                    break;
-                }
-                case "1":
-                    if(Flag==1)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t2.runs(Integer.parseInt(hit))+"-"+t2.Twicket+"]");
-            System.out.println(t2player[t2BatsmenNo1].batsmenName+"* "+t2player[t2BatsmenNo1].runs(Integer.parseInt(hit))+"("+t2player[t2BatsmenNo1].ballsfaced()+")");
-            System.out.println(t2player[t2BatsmenNo2].batsmenName+" "+t2player[t2BatsmenNo2].runs+"("+t2player[t2BatsmenNo2].ballsfaced+")");
-            System.out.println(t1baller[t1ballerNo].ballerName+" "+t1baller[t1ballerNo].wickets+"-"+t1baller[t1ballerNo].runsANDball(Integer.parseInt(hit))+" "+t1baller[t1ballerNo].Overs(t1baller[t1ballerNo].balls));
-            System.out.println("Overs-"+t2.Tover(t2.balls));
-            System.out.println("Batsmen hit the ball for a single");
-
-                        if(Integer.parseInt(hit)%2!=0)
-                        {
-                            Flag=2;
-                        }
-
-                        break;
-                    }
-                    if(Flag==2)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t2.runs(Integer.parseInt(hit))+"-"+t2.Twicket+"]");
-            System.out.println(t2player[t2BatsmenNo1].batsmenName+" "+t2player[t2BatsmenNo1].runs+"("+t2player[t2BatsmenNo1].ballsfaced+")");
-            System.out.println(t2player[t2BatsmenNo2].batsmenName+"* "+t2player[t2BatsmenNo2].runs(Integer.parseInt(hit))+"("+t2player[t2BatsmenNo2].ballsfaced()+")");
-            System.out.println(t1baller[t1ballerNo].ballerName+" "+t1baller[t1ballerNo].wickets+"-"+t1baller[t1ballerNo].runsANDball(Integer.parseInt(hit))+" "+t1baller[t1ballerNo].Overs(t1baller[t1ballerNo].balls));
-            System.out.println("Overs-"+t2.Tover(t2.balls));
-            System.out.println("Batsmen hit the ball for a single");
-                        if(Integer.parseInt(hit)%2!=0)
-                        {
-                            Flag=1;
-                        }
-                        if(ball%6==0)
-                        {
-                            if(Flag==1){
-                                Flag=2;
-                            }
-                            else
-                            {
-                                Flag=1;
-                            }
-
-
-                        }
-                    }
-
-                    break;
-                case "2":
-                    if(Flag==1)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t2.runs(Integer.parseInt(hit))+"-"+t2.Twicket+"]");
-            System.out.println(t2player[t2BatsmenNo1].batsmenName+"* "+t2player[t2BatsmenNo1].runs(Integer.parseInt(hit))+"("+t2player[t2BatsmenNo1].ballsfaced()+")");
-            System.out.println(t2player[t2BatsmenNo2].batsmenName+" "+t2player[t2BatsmenNo2].runs+"("+t2player[t2BatsmenNo2].ballsfaced+")");
-            System.out.println(t1baller[t1ballerNo].ballerName+" "+t1baller[t1ballerNo].wickets+"-"+t1baller[t1ballerNo].runsANDball(Integer.parseInt(hit))+" "+t1baller[t1ballerNo].Overs(t1baller[t1ballerNo].balls));
-            System.out.println("Overs-"+t2.Tover(t2.balls));
-            System.out.println("it's a cut shot");
-                        if(ball%6==0)
-                        {
-                            Flag=2;
-                        }
-                        break;
-                    }
-                    if(Flag==2)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t2.runs(Integer.parseInt(hit))+"-"+t2.Twicket+"]");
-            System.out.println(t2player[t2BatsmenNo1].batsmenName+" "+t2player[t2BatsmenNo1].runs+"("+t2player[t2BatsmenNo1].ballsfaced+")");
-            System.out.println(t2player[t2BatsmenNo2].batsmenName+"* "+t2player[t2BatsmenNo2].runs(Integer.parseInt(hit))+"("+t2player[t2BatsmenNo2].ballsfaced()+")");
-            System.out.println(t1baller[t1ballerNo].ballerName+" "+t1baller[t1ballerNo].wickets+"-"+t1baller[t1ballerNo].runsANDball(Integer.parseInt(hit))+" "+t1baller[t1ballerNo].Overs(t1baller[t1ballerNo].balls));
-            System.out.println("Overs-"+t2.Tover(t2.balls));
-            System.out.println("2 more runs through mid on");
-                        if(ball%6==0)
-                        {
-                            Flag=1;
-                        }
-                        break;
-                    }
-                case "3":
-                    if(Flag==1)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t2.runs(Integer.parseInt(hit))+"-"+t2.Twicket+"]");
-            System.out.println(t2player[t2BatsmenNo1].batsmenName+"* "+t2player[t2BatsmenNo1].runs(Integer.parseInt(hit))+"("+t2player[t2BatsmenNo1].ballsfaced()+")");
-            System.out.println(t2player[t2BatsmenNo2].batsmenName+" "+t2player[t2BatsmenNo2].runs+"("+t2player[t2BatsmenNo2].ballsfaced+")");
-            System.out.println(t1baller[t1ballerNo].ballerName+" "+t1baller[t1ballerNo].wickets+"-"+t1baller[t1ballerNo].runsANDball(Integer.parseInt(hit))+" "+t1baller[t1ballerNo].Overs(t1baller[t1ballerNo].balls));
-            System.out.println("Overs-"+t2.Tover(t2.balls));
-            System.out.println("Nicely cut away for 3 runs");
-
-                        if(Integer.parseInt(hit)%2!=0)
-                        {
-                            Flag=2;
-                        }
-
-                        break;
-                    }
-                    if(Flag==2)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t2.runs(Integer.parseInt(hit))+"-"+t2.Twicket+"]");
-            System.out.println(t2player[t2BatsmenNo1].batsmenName+" "+t2player[t2BatsmenNo1].runs+"("+t2player[t2BatsmenNo1].ballsfaced+")");
-            System.out.println(t2player[t2BatsmenNo2].batsmenName+"* "+t2player[t2BatsmenNo2].runs(Integer.parseInt(hit))+"("+t2player[t2BatsmenNo2].ballsfaced()+")");
-            System.out.println(t1baller[t1ballerNo].ballerName+" "+t1baller[t1ballerNo].wickets+"-"+t1baller[t1ballerNo].runsANDball(Integer.parseInt(hit))+" "+t1baller[t1ballerNo].Overs(t1baller[t1ballerNo].balls));
-            System.out.println("Overs-"+t2.Tover(t2.balls));
-            System.out.println("Nicely driven for 3 between 2 fielders");
-                        if(Integer.parseInt(hit)%2!=0)
-                        {
-                            Flag=1;
-                        }
-                        if(ball%6==0)
-                        {
-                            
-                            if(Flag==1){
-                                Flag=2;
-                            }
-                            else
-                            {
-                                Flag=1;
-                            }
-
-                        }
-                    }
-
-                    break;
-                case "4":
-                    if(Flag==1)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t2.runs(Integer.parseInt(hit))+"-"+t2.Twicket+"]");
-            System.out.println(t2player[t2BatsmenNo1].batsmenName+"* "+t2player[t2BatsmenNo1].runs(Integer.parseInt(hit))+"("+t2player[t2BatsmenNo1].ballsfaced()+")");
-            System.out.println(t2player[t2BatsmenNo2].batsmenName+" "+t2player[t2BatsmenNo2].runs+"("+t2player[t2BatsmenNo2].ballsfaced+")");
-            System.out.println(t1baller[t1ballerNo].ballerName+" "+t1baller[t1ballerNo].wickets+"-"+t1baller[t1ballerNo].runsANDball(Integer.parseInt(hit))+" "+t1baller[t1ballerNo].Overs(t1baller[t1ballerNo].balls));
-            System.out.println("Overs-"+t2.Tover(t2.balls));
-            System.out.println("It's a square drive for 4 runs");
-                        if(ball%6==0)
-                        {
-                            Flag=2;
-                        }
-                        break;
-                    }
-                    if(Flag==2)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t2.runs(Integer.parseInt(hit))+"-"+t2.Twicket+"]");
-            System.out.println(t2player[t2BatsmenNo1].batsmenName+" "+t2player[t2BatsmenNo1].runs+"("+t2player[t2BatsmenNo1].ballsfaced+")");
-            System.out.println(t2player[t2BatsmenNo2].batsmenName+"* "+t2player[t2BatsmenNo2].runs(Integer.parseInt(hit))+"("+t2player[t2BatsmenNo2].ballsfaced()+")");
-            System.out.println(t1baller[t1ballerNo].ballerName+" "+t1baller[t1ballerNo].wickets+"-"+t1baller[t1ballerNo].runsANDball(Integer.parseInt(hit))+" "+t1baller[t1ballerNo].Overs(t1baller[t1ballerNo].balls));
-            System.out.println("Overs-"+t2.Tover(t2.balls));
-            System.out.println("A fabulous scoop shot  for 4 runs");
-                        if(ball%6==0)
-                        {
-                            Flag=1;
-                        }
-                        break;
-                    }
-
-                case "6":if(Flag==1)
-                {
-        System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t2.runs(Integer.parseInt(hit))+"-"+t2.Twicket+"]");
-        System.out.println(t2player[t2BatsmenNo1].batsmenName+"* "+t2player[t2BatsmenNo1].runs(Integer.parseInt(hit))+"("+t2player[t2BatsmenNo1].ballsfaced()+")");
-        System.out.println(t2player[t2BatsmenNo2].batsmenName+" "+t2player[t2BatsmenNo2].runs+"("+t2player[t2BatsmenNo2].ballsfaced+")");
-        System.out.println(t1baller[t1ballerNo].ballerName+" "+t1baller[t1ballerNo].wickets+"-"+t1baller[t1ballerNo].runsANDball(Integer.parseInt(hit))+" "+t1baller[t1ballerNo].Overs(t1baller[t1ballerNo].balls));
-        System.out.println("Overs-"+t2.Tover(t2.balls));
-        System.out.println("Hammered away for 6 runs");
-                    if(ball%6==0)
-                    {
-                        Flag=2;
-                    }
-                    break;
-                }
-                    if(Flag==2)
-                    {
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t2.runs(Integer.parseInt(hit))+"-"+t2.Twicket+"]");
-            System.out.println(t2player[t2BatsmenNo1].batsmenName+" "+t2player[t2BatsmenNo1].runs+"("+t2player[t2BatsmenNo1].ballsfaced+")");
-            System.out.println(t2player[t2BatsmenNo2].batsmenName+"* "+t2player[t2BatsmenNo2].runs(Integer.parseInt(hit))+"("+t2player[t2BatsmenNo2].ballsfaced()+")");
-            System.out.println(t1baller[t1ballerNo].ballerName+" "+t1baller[t1ballerNo].wickets+"-"+t1baller[t1ballerNo].runsANDball(Integer.parseInt(hit))+" "+t1baller[t1ballerNo].Overs(t1baller[t1ballerNo].balls));
-            System.out.println("Overs-"+t2.Tover(t2.balls));
-            System.out.println("What a cheeky shot for 6 runs");
-                        if(ball%6==0)
-                        {
-                            Flag=1;
-                        }
-                        break;
-                    }
-                case "W":
-                    if(Flag==1)
-                    {
-            System.out.println("Enter the name of the new Batsmen");
-            System.out.println(t1.Name+" VS "+t2.Name+" "+"["+t2.runs(0)+"-"+t2.Twicket()+"]");
-            System.out.println(t2player[t2BatsmenNo1].batsmenName+"W "+t2player[t2BatsmenNo1].runs+"("+t2player[t2BatsmenNo1].ballsfaced()+")");
-            System.out.println(t2player[t2BatsmenNo2].batsmenName+" "+t2player[t2BatsmenNo2].runs+"("+t2player[t2BatsmenNo2].ballsfaced+")");
-            System.out.println(t1baller[t1ballerNo].ballerName+" "+t1baller[t1ballerNo].wicket()+"-"+t1baller[t1ballerNo].runsANDball(0)+" "+t1baller[t1ballerNo].Overs(t1baller[t1ballerNo].balls));
-            System.out.println("Overs-"+t2.Tover(t2.balls));
-            System.out.println("Its a bouncer and fielder manage to catch it W!");
-                        t2BatsmenNo1=t2BatsmenNo1+2;
-                        t2player[t2BatsmenNo1]= new Batsmen();
-            System.out.println("Enter the new batsmen name:");
-                        t2player[t2BatsmenNo1].Name(t2player[t2BatsmenNo1].batsmenName=scan.nextLine());
-                        if(ball%6==0)
-                        {
-                            Flag=2;
-                        }
-                        break;
-                    }
-                    if(Flag==2) {
-            System.out.println(t1.Name + " VS " + t2.Name + " " + "[" + t2.runs(0) + "-" + t2.Twicket() + "]");
-            System.out.println(t2player[t2BatsmenNo1].batsmenName + " " + t2player[t2BatsmenNo1].runs + "(" + t2player[t2BatsmenNo1].ballsfaced + ")");
-            System.out.println(t2player[t2BatsmenNo2].batsmenName + "W " + t2player[t2BatsmenNo2].runs + "(" + t2player[t2BatsmenNo2].ballsfaced() + ")");
-            System.out.println(t1baller[t1ballerNo].ballerName + " " + t1baller[t1ballerNo].wicket() + "-" + t1baller[t1ballerNo].runsANDball(0) + " " + t1baller[t1ballerNo].Overs(t1baller[t1ballerNo].balls));
-            System.out.println("Overs-" + t2.Tover(t2.balls));
-            System.out.println("Its a Lose shot by batsman he Loses his W!");
-                        t2BatsmenNo2 = t2BatsmenNo2 + 2;
-                        t2player[t2BatsmenNo2] = new Batsmen();
-            System.out.println("Enter the new batsmen name:");
-                        t2player[t2BatsmenNo2].Name(t2player[t2BatsmenNo2].batsmenName = scan.nextLine());
-                        if (ball % 6 == 0) {
-                            Flag = 1;
-                        }
-                        break;
-                    }
-                default:{
-            System.out.println("Invalid input");
-                        ball--;
-                }
-            }
-            if(t2.Twicket==10)
-            {
-    System.out.println(t2.Name+" lose by "+(t2.Target-t2.Runs-1));
-                break;
-            }
-            if(t2.Target<t2.Runs)
-            {
-    System.out.println(t2.Name+" won by "+(10-t2.Twicket));
-                break;
-            }
-            if(ball%6==0)
-            {
-                if(ball==30&&t2.Target<t2.Runs)
-                {
-        System.out.println(t2.Name+" won by "+(10-t2.Twicket));
-                    break;
-                }
-    System.out.print("Available ballers\nPress:\n");
-                for(int balling=0;balling<6;balling++)
-                {
-        System.out.println(balling+1+" "+t1baller[balling].ballerName);
-                }
-                t1ballerNo=scan.nextInt();
-                scan.nextLine();
-                t1ballerNo=t1ballerNo-1;
-            }
+        else if(type=="All-rounder")
+        {
+        System.out.println("All-rounder Name : "+player[Player_no].bt_name);
+        System.out.println("Team : "+player[Player_no].team_name);
+        System.out.println("Runs : "+player[Player_no].bt_runs);
+        System.out.println("Innings as Batsmen : "+player[Player_no].bt_innings);
+        System.out.println("Age : "+player[Player_no].bt_age);
+        System.out.print("Strike Rate : ");
+        System.out.println(player[Player_no].bat_strike_rate(player[Player_no].bt_balls_faced,player[Player_no].bt_runs));
+        System.out.print("Batting average : ");
+        System.out.println(player[Player_no].bat_average(player[Player_no].bt_innings,player[Player_no].bt_runs));
+        System.out.println("Innings as Baller : "+player[Player_no].ba_innings);
+        player[Player_no].ball_wicket_average(player[Player_no].ba_wicket,player[Player_no].ba_runs);
+        System.out.println("Wickets : "+player[Player_no].ba_wicket);
+         player[Player_no].economy(player[Player_no].ba_runs);
+        System.out.println("Economy : "+player[Player_no].ba_economy);
+        }
+        else if(type=="batsmen")
+        {
+        System.out.println("Batsmen Name : "+player[Player_no].bt_name);
+        System.out.println("Team : "+player[Player_no].team_name);
+        System.out.println("Runs : "+player[Player_no].bt_runs);
+        System.out.println("Innings : "+player[Player_no].bt_innings);
+        System.out.println("Age : "+player[Player_no].bt_age);
+        System.out.print("Strike Rate : ");
+        System.out.println(player[Player_no].bat_strike_rate(player[Player_no].bt_balls_faced,player[Player_no].bt_runs));
+        System.out.print("Batting average : ");
+        System.out.println(player[Player_no].bat_average(player[Player_no].bt_innings,player[Player_no].bt_runs));
         }
     }
 }
-public class Main
-{
-    public static void main(String[] args) {
-        //gameplay starts
-        GamePlay g1 = new GamePlay();
+class Main{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        Profile p = new Profile();
+        int total_player;
+        System.out.println("Enter the number of players of whom you want to create a profile");
+        total_player=sc.nextInt();
+        for(int Player=0;Player<total_player;Player++){
+         p.profile(Player);
+         p.profile_disp(Player);
+        }
     }
 }
