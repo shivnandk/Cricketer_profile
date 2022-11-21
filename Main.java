@@ -114,7 +114,8 @@ class Profile{
     type=sc.nextLine();
     System.out.println(type);
     {
-    if(type=="batsmen")
+        switch(type){
+    case "batsmen":
         {
         System.out.println("Enter the name of the batsmen");
         name=sc.nextLine();
@@ -134,8 +135,9 @@ class Profile{
         System.out.println("Enter the number of balls faced by the batsmen");
         inputs=sc.nextInt();
         player[Player_no].bat_balls_faced(inputs);
+        break;
         }
-    else if(type=="baller")
+    case "baller":
         {
         System.out.println("Enter the name of the baller");
         name=sc.nextLine();
@@ -158,8 +160,9 @@ class Profile{
         System.out.println("Enter the number of balls balled by the baller");
         inputs=sc.nextInt();
         player[Player_no].baller_balls(inputs);
+        break;
         }
-    else if(type=="All-rounder")
+    case "All-rounder":
     {
     System.out.println("Enter the name of the All-rounder");
     name=sc.nextLine();
@@ -193,10 +196,14 @@ class Profile{
     player[Player_no].baller_balls(inputs);
     }
     }
+    }
         
     }
     void profile_disp(int Player_no){
-        if(type=="baller"){
+        switch(type)
+        {
+            case "baller":
+        {
         System.out.println("Baller Name : "+player[Player_no].ba_name);
         System.out.println("Team : "+player[Player_no].team_name);
         System.out.println("Innings : "+player[Player_no].ba_innings);
@@ -207,7 +214,7 @@ class Profile{
         player[Player_no].economy(player[Player_no].ba_runs);
         System.out.println("Economy : "+player[Player_no].ba_economy);
         }
-        else if(type=="All-rounder")
+        case "All-rounder":
         {
         System.out.println("All-rounder Name : "+player[Player_no].bt_name);
         System.out.println("Team : "+player[Player_no].team_name);
@@ -224,7 +231,7 @@ class Profile{
          player[Player_no].economy(player[Player_no].ba_runs);
         System.out.println("Economy : "+player[Player_no].ba_economy);
         }
-        else if(type=="batsmen")
+        case "batsmen":
         {
         System.out.println("Batsmen Name : "+player[Player_no].bt_name);
         System.out.println("Team : "+player[Player_no].team_name);
@@ -236,6 +243,7 @@ class Profile{
         System.out.print("Batting average : ");
         System.out.println(player[Player_no].bat_average(player[Player_no].bt_innings,player[Player_no].bt_runs));
         }
+    }
     }
 }
 class Main{
