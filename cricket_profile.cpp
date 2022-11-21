@@ -84,6 +84,7 @@ class batsmen{
     //this function stores the age of the batsmen
     int bat_age(int age_ip){
         bt_age=age_ip;
+        return bt_age;
     }
     //this function stores the number of innings batsmen played
     int bat_innings(int innings_ip){
